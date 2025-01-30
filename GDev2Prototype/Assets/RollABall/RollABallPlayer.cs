@@ -21,7 +21,7 @@ public class RollABallPlayer : MonoBehaviour
         Vector3 actualMovement = new Vector3(xDir,0,zDir);
         print(actualMovement);
 
-        body.AddForce(actualMovement);
+        body.AddForce((actualMovement *2));
     }
     
     void OnMove(InputValue movement)
