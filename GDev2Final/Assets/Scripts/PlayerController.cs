@@ -7,11 +7,16 @@ public class PlayerController : MonoBehaviour
     public float accelerate = 1.0f;
     public float maxSpeed = 20.0f;
     public float jumpStrength = 2000.0f;
+    public float coyoteTime = 0.0f;
+    public InputAction jump;
+
+    bool Grounded=false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         DI = new Vector2(0,0);
         rb=GetComponent<Rigidbody>();
+        jump.Enable();
     }
 
     // Update is called once per frame
@@ -24,6 +29,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(finalDir*accelerate);
         }
+        if(jump.IsPressed())
+        {
+            Jump();
+        }
         
     }
     void OnMove(InputValue stickMove)
@@ -32,8 +41,18 @@ public class PlayerController : MonoBehaviour
         DI=stickMove.Get<Vector2>();
         print(DI);
     }
-    void OnJump(InputAction jump)
+    void FixedUpdate()
     {
-        rb.AddForce(0,jumpStrength,0);
+        if(rb.velocity.y==0)
+        {
+            Grounded=true;
+        }
+    }
+    void Jump()
+    {
+        if(Grounded)
+        {
+            rb.AddForce(0,jumpStrength,0);
+        }
     }
 }
