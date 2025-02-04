@@ -10,6 +10,7 @@ public class RollABallPlayer2 : MonoBehaviour
     public GameObject camera;
     public float turnspeed=1.0f;
     public float gravconst =-10.0f;
+    public GameObject spawn;
     Vector3 groundNormal = new Vector3(0,0,0);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +22,7 @@ public class RollABallPlayer2 : MonoBehaviour
     Vector3 checkGroundNormal()
     {
         RaycastHit hit;
+
         Debug.DrawRay(transform.position, Vector3.down, Color.red);
         if(Physics.Raycast(transform.position, Vector3.down, out hit, 20))
         {
@@ -35,7 +37,7 @@ public class RollABallPlayer2 : MonoBehaviour
                 return groundNormal;
             }
         }
-        else if(Physics.Raycast(transform.position, Vector3.forward, out hit, 20))
+        else if(Physics.SphereCast(transform.position, 10, transform.position, out hit, 10))
         {
             if(hit.transform.gameObject.tag==("Ground"))
             {
@@ -50,7 +52,7 @@ public class RollABallPlayer2 : MonoBehaviour
         }
         else
         {
-            return groundNormal;
+            return new Vector3(0,1,0);
         }
     }
     // Update is called once per frame
@@ -79,6 +81,10 @@ public class RollABallPlayer2 : MonoBehaviour
     {
         m = movement.Get<Vector2>();
 
+    }
+    public void Respawn()
+    {
+        player.transform.position = spawn.transform.position;
     }
     Vector3 Gravity(Vector3 down, float weight)
     {   
