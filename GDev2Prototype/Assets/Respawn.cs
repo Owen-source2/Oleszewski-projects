@@ -11,7 +11,9 @@ public class Respawn : MonoBehaviour
     }
     void OnTriggerEnter()
     {
+        Destroy(player);
         player.transform.position = spawn.transform.position;
+        Debug.Log("died");
     }
 
     // Update is called once per frame
