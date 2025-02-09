@@ -325,7 +325,6 @@ GameObject:
   - component: {fileID: 7945693029254941059}
   - component: {fileID: 3990702743848418105}
   - component: {fileID: 3739087832542571196}
-  - component: {fileID: 885987635411664903}
   m_Layer: 0
   m_Name: FPPlayer
   m_TagString: Untagged
@@ -439,7 +438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 247512415168163677}
-  speed: 1
+  bulletSpawner: {fileID: 2663142961174875692}
+  bullet: {fileID: 1661176904709423437, guid: 4f130c38c59486cd3b465890e0988507, type: 3}
+  speed: 0.43
 --- !u!143 &3990702743848418105
 CharacterController:
   m_ObjectHideFlags: 0
@@ -495,20 +496,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &885987635411664903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327626599506384529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f15138aee152f4899bd382fe84a27f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawn: {fileID: 0}
 --- !u!1 &2516422521978068625
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +521,7 @@ Transform:
   m_GameObject: {fileID: 2516422521978068625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 556.6, y: 1, z: 362.5}
+  m_LocalPosition: {x: 557.04, y: 0.58, z: 361.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -567,7 +554,7 @@ Transform:
   m_GameObject: {fileID: 2663142961174875692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.613}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
