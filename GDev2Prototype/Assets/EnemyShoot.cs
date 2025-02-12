@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class bulletMove : MonoBehaviour
+public class EnemyShoot : MonoBehaviour
 {
-    [SerializeField]float bulletSpeed=5.0f;
-    [SerializeField] Rigidbody rb;
+    [SerializeField]GameObject bullet;
     private float waitTime = 2.0f;
     private float timer = 0.0f;
+    [SerializeField] Vector3 bulletDistance = new Vector3();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,11 +13,6 @@ public class bulletMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector3 move = transform.position.normalized*bulletSpeed;
-        rb.AddForce(move);
-    }
     void Update()
     {
         timer += Time.deltaTime;
@@ -27,8 +22,13 @@ public class bulletMove : MonoBehaviour
         if (timer > waitTime)
         {
             timer = timer - waitTime;
-            Destroy(gameObject);
+            Fire();
         }
 
+    }
+    void Fire()
+    {
+        bullet=Instantiate(bullet, transform.position, transform.rotation);
+        //Destroy(bullet,1.0f);
     }
 }

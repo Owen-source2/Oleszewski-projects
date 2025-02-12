@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 2797947486663573670}
   - component: {fileID: 8534768532505887428}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Enemy
+  m_Name: Bullet (player)
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 557.04, y: 1.81, z: 366.24}
-  m_LocalScale: {x: 1.1428897, y: 0.57517016, z: 1.1428897}
+  m_LocalScale: {x: 0.071862, y: 0.071862, z: 0.071862}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,7 +128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2516422521978068625, guid: 329b7378a82454f1eb992125862fa4c3, type: 3}
   spawn: {fileID: 2153881208486024306, guid: 09a418794607855b98df086238a10c36, type: 3}
-  lifetime: 1
 --- !u!114 &5862133138911204435
 MonoBehaviour:
   m_ObjectHideFlags: 0
