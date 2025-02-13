@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8534768532505887428}
   m_Layer: 0
   m_Name: Bullet (player)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2516422521978068625, guid: 329b7378a82454f1eb992125862fa4c3, type: 3}
   spawn: {fileID: 2153881208486024306, guid: 09a418794607855b98df086238a10c36, type: 3}
+  lifetime: 1
 --- !u!114 &5862133138911204435
 MonoBehaviour:
   m_ObjectHideFlags: 0
