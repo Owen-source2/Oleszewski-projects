@@ -5,6 +5,7 @@ public class StealthEnemy : MonoBehaviour
 
     [SerializeField]
     float speed=1.0f;
+    
     //public float patrolDistance = 10f;
     public enum state
     {
