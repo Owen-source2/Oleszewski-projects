@@ -90,6 +90,6 @@ public class RollABallPlayer2 : MonoBehaviour
     {   
         Vector3 gravity = down.normalized;
         gravity = gravity * weight;
-        return gravity;
+        return gravity*-1;
     }
 }
