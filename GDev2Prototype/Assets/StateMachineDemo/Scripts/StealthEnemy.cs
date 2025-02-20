@@ -76,11 +76,14 @@ public class StealthEnemy : MonoBehaviour
         //Debug.DrawRay(transform.position,transform.forward*10,Color green);
         if(Physics.Raycast(transform.position,transform.forward,out hit,10))
         {
-            FPControl player = hit.transform.gameObject.GetComponent<FPControl>();
+            playerStateManager player = hit.transform.gameObject.GetComponent<playerStateManager>();
             if(player!=null)
             {
-                print(hit.transform.gameObject.name);
-                return hit.transform.gameObject;
+                if(player.currentState!=player.sneakState)
+                {
+                    print(hit.transform.gameObject.name);
+                    return hit.transform.gameObject;
+                }
             }
         }
         return null;
