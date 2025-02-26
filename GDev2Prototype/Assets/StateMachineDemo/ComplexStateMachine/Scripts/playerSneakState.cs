@@ -8,7 +8,7 @@ public class playerSneakState:PlayerBaseState
     }
     public override void UpdateState(playerStateManager player)
     {
-        player.MovePlayer(player.defaultSpeed/2); 
+        player.MovePlayer(player.defaultSpeed/2,0); 
         if(player.movement.magnitude<0.1)
         {
             player.SwitchState(player.idleState);
