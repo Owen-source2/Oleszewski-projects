@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/RollABall/Scenes/RollABall.Level1.unity
     guid: 5d0373ec7b323cb49978ff53572b5bef
-  - enabled: 1
+  - enabled: 0
     path: Assets/StateMachineDemo/Scenes/Chase.unity
     guid: 4b6dd49b89ce3904baaa7274b27211ff
+  - enabled: 1
+    path: Assets/Polish/Polish.unity
+    guid: 8a6a4c7cedd7cd7fe8ed0509d73d3088
   - enabled: 1
     path: Assets/RollABall/Scenes/RollABall.WinScreen.unity
     guid: 632405efdd5fd5244b2c7b34db6dfe0a

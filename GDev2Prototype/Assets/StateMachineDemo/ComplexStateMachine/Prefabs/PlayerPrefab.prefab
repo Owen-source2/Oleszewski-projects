@@ -301,7 +301,7 @@ MonoBehaviour:
   camera: {fileID: 5315103437587912339}
   movement: {x: 0, y: 0}
   sneak: 0
-  fallSpeed: 9.81
+  fallSpeed: -9.81
   onRail: 0
   currentRailScript: {fileID: 0}
   grindSpeed: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StealthEnemy : MonoBehaviour
 {
-
+    Animator anim;
     [SerializeField]
     float speed=1.0f;
     
@@ -17,6 +17,10 @@ public class StealthEnemy : MonoBehaviour
     GameObject target;
     int routeIndex=0;
     public state currentState = state.Pacing;
+    void Start()
+    {
+        anim=GetComponent<Animator>();
+    }
     void Update()
     {
         switch(currentState)
@@ -30,6 +34,7 @@ public class StealthEnemy : MonoBehaviour
         }
     }
     void pacing(){
+        anim.SetBool("Following",false);
         print("Pacing");
         //Follow target
         target=route[routeIndex];
@@ -52,6 +57,7 @@ public class StealthEnemy : MonoBehaviour
     }
     void following()
     {
+        anim.SetBool("Following",true);
         print("Following");
         MoveTo(target);
 
