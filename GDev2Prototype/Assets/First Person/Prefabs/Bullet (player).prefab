@@ -129,6 +129,7 @@ MonoBehaviour:
   player: {fileID: 2516422521978068625, guid: 329b7378a82454f1eb992125862fa4c3, type: 3}
   spawn: {fileID: 2153881208486024306, guid: 09a418794607855b98df086238a10c36, type: 3}
   lifetime: 1
+  BloodHandler: {fileID: 6007730058564602937, guid: 3d6553404a9f914478e74b9e6585c87c, type: 3}
 --- !u!114 &5862133138911204435
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ public class Respawn : MonoBehaviour
     public GameObject player;
     public GameObject spawn;
     [SerializeField] float lifetime=1.0f;
+    [SerializeField] GameObject BloodHandler;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,13 +16,14 @@ public class Respawn : MonoBehaviour
     {
         if(collision.gameObject.tag=="Player")
         {
-            Debug.Log("died");
-            print(SceneManager.GetActiveScene().name);
+            //Debug.Log("died");
+            //print(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if(collision.gameObject.tag!="Ground"&&collision.gameObject.tag!=gameObject.tag)
         {
-            Destroy(collision.transform.gameObject);
+            Destroy(collision.transform.gameObject,0.5f);
+            Instantiate(BloodHandler, collision.transform);
             //player.transform.position = spawn.transform.position;
             
         }

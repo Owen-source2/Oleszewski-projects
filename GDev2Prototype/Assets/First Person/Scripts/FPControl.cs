@@ -16,7 +16,7 @@ public class FPControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.lockState=CursorLockMode.Locked;
+        //Cursor.lockState=CursorLockMode.Locked;
         control=GetComponent<CharacterController>();
     }
 
@@ -43,6 +43,7 @@ public class FPControl : MonoBehaviour
     }
     void OnMove(InputValue movement)
     {
+        //Debug.Log(movement);
         charMove=movement.Get<Vector2>();
     }
     void OnLook(InputValue look)
@@ -55,7 +56,8 @@ public class FPControl : MonoBehaviour
     }
     void OnAttack()
     {
-        //bullet=Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        Debug.Log("shot");
+        Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
         //Debug.Log(cameraUpRotation);
     }
 }

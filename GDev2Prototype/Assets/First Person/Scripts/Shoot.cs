@@ -31,6 +31,7 @@ public class Shoot : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white); 
             Debug.Log("Did not Hit"); 
         }*/
+        Debug.Log("shot");
         Instantiate(bullet, transform.position, transform.rotation);
         //Destroy(bullet,1.0f);
 
