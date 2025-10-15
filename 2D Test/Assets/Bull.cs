@@ -8,6 +8,7 @@ public class Bull : MonoBehaviour
     void Start()
     {
         rb2d.linearVelocityY = speed;
+        Destroy(gameObject, 5.0f);
     }
 
     // Update is called once per frame

@@ -24,7 +24,7 @@ public class UI_Control : MonoBehaviour
     public void updateLives(int damage)
     {
         lives -= damage;
-        livesDisplay.text = "Lives: " + lives;
+        livesDisplay.text = "Health: " + lives;
         if (lives == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
