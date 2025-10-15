@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 9028689091985151393, guid: acd59a7cf293357d5882ac4d951c7f34, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -613,10 +617,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 422659694202485484, guid: 32a2d85143249a5238b0684fd23c1d62, type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 8903453063356781793, guid: cec98c806d2edbb3ab987601d5e345e2, type: 3}
     - target: {fileID: 2000197067279613591, guid: 32a2d85143249a5238b0684fd23c1d62, type: 3}
       propertyPath: m_Name
       value: Player

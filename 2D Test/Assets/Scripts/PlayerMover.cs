@@ -1,11 +1,16 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerMover : MonoBehaviour
 {
     public Rigidbody2D rb2d;
     public int speed = 10;
-
+    public bool isAlive = true;
     public Vector2 startPos;
+    public int playerHealth = 10;
+
+    public TextMeshProUGUI winMsg;
+    public TextMeshProUGUI playerHealth_Txt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,23 +21,51 @@ public class PlayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (isAlive)
         {
-            rb2d.AddForceX(speed);
+            //movement code
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb2d.AddForceX(speed);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb2d.AddForceX(-speed);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb2d.AddForceY(speed);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb2d.AddForceY(-speed);
+            }
         }
-
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            rb2d.AddForceX(-speed);
+            print("you have died");
         }
 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.tag == "trap")
         {
-            transform.position = startPos;
+
+            if (playerHealth > 1)
+            {
+                playerHealth--;
+                playerHealth_Txt.text = playerHealth.ToString();
+            }
+            else
+            {
+                transform.position = startPos;
+                winMsg.text = "You Died!";
+                isAlive = false;
+            }
+
         }
     }
 }
