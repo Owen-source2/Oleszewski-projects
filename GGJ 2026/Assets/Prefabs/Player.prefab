@@ -220,12 +220,15 @@ MonoBehaviour:
   fallSpeed: 7
   airSpeed: 230
   coyoteTime: 0.1
-  stompSpeed: 800
+  stompSpeed: 400
   stompMass: 20
   warpOffsetY: 0
   warpBallSpawn: {fileID: 2132609652311142300}
   warpBallBase: {fileID: 856563259275127454, guid: 0545e0cb1d12725688b9d0c3c28dfba3, type: 3}
-  warpBallBaseSpeed: 15
+  warpBallBaseSpeed: 45
+  dashSpeed: 200
+  canDash: 1
+  dashCooldown: 4
 --- !u!114 &4702176439007049945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +334,7 @@ Transform:
   m_GameObject: {fileID: 8988980140137789917}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.29, y: 0.87, z: -10}
+  m_LocalPosition: {x: 4.93, y: 2.07, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
