@@ -5,6 +5,7 @@ public class MaskSelect : MonoBehaviour
 {
     public int maskSelected=0;
     public UI_Manager uiManager;
+    public PlayerStateMachine playerStateMachine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
