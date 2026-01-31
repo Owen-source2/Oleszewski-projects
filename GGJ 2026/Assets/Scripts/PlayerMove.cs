@@ -23,11 +23,20 @@ public class PlayerMove : MonoBehaviour
     float massInit;
     int terminalVelInit;
     public float warpOffsetY;
+    float facingDir;
+    [SerializeField]Transform warpBallSpawn;
+    [SerializeField] GameObject warpBallBase;
+    [SerializeField]int warpBallBaseSpeed;
+    [SerializeField]float dashSpeed;
+    public bool canDash;
+    public float dashCooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        canDash=true;
         gravity=rb2d.gravityScale;
         groundFriction=rb2d.linearDamping;
+        facingDir=1.0f;
     }
 
     // Update is called once per frame
@@ -82,6 +91,10 @@ public class PlayerMove : MonoBehaviour
             
             rb2d.AddForce(Vector2.ClampMagnitude(new Vector2(Input.GetAxisRaw("Horizontal"),0)*airSpeed,topHorizontalSpeed));
         }
+        if (Input.GetAxisRaw("Horizontal") >= 0.01f||Input.GetAxisRaw("Horizontal")<=-0.01f)
+        {
+            facingDir=Input.GetAxisRaw("Horizontal");
+        }
     }
     IEnumerator LeaveGround()
     {
@@ -92,6 +105,19 @@ public class PlayerMove : MonoBehaviour
     public void StartDash()
     {
         print("Dash");
+        if(canDash)
+        {
+            rb2d.linearVelocity=Vector2.zero;
+            Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+            rb2d.linearVelocity=dir*dashSpeed;
+            canDash=false;
+            StartCoroutine("DashCooldown");        
+        }
+    }
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        canDash=true;
     }
     public void StartStomp()
     {
@@ -115,9 +141,12 @@ public class PlayerMove : MonoBehaviour
     public void StartWarp()
     {
         print("Warp");
+        GameObject warpBall=Instantiate(warpBallBase,warpBallSpawn.position,Quaternion.identity);
+        warpBall.GetComponent<Rigidbody2D>().linearVelocity=(rb2d.linearVelocity*new Vector2(0.9f,0.7f))+new Vector2(facingDir*warpBallBaseSpeed,warpBallBaseSpeed/2);
     }
     public void Warp(Transform warpBall)
     {
+        print("Warping to "+warpBall);
         transform.position=warpBall.position+new Vector3(0,warpOffsetY,0);
     }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4043612917622824535}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckL
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 915668254354163286}
   - component: {fileID: 2632015348169514998}
   - component: {fileID: 4702176439007049945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,13 +61,14 @@ Transform:
   m_GameObject: {fileID: 4870092017043760169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.29, y: -0.87, z: 0}
+  m_LocalPosition: {x: 20.96232, y: 3.6689515, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8948798970066021048}
   - {fileID: 4043612917622824535}
   - {fileID: 5553353688768830983}
+  - {fileID: 2132609652311142300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &876868980620760241
@@ -188,7 +189,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -219,7 +220,12 @@ MonoBehaviour:
   fallSpeed: 7
   airSpeed: 230
   coyoteTime: 0.1
-  stompSpeed: 12000
+  stompSpeed: 800
+  stompMass: 20
+  warpOffsetY: 0
+  warpBallSpawn: {fileID: 2132609652311142300}
+  warpBallBase: {fileID: 856563259275127454, guid: 0545e0cb1d12725688b9d0c3c28dfba3, type: 3}
+  warpBallBaseSpeed: 15
 --- !u!114 &4702176439007049945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +241,37 @@ MonoBehaviour:
   player: {fileID: 2632015348169514998}
   maskKey: 304
   playerState: 0
+--- !u!1 &5678025364921033380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132609652311142300}
+  m_Layer: 7
+  m_Name: WarpBallSpawnerR
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132609652311142300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678025364921033380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7355763934770075578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8190537411425682375
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8948798970066021048}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckR
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -278,7 +315,7 @@ GameObject:
   - component: {fileID: 5601470305948571947}
   - component: {fileID: 8894363134213554857}
   - component: {fileID: 4678963031636046561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
