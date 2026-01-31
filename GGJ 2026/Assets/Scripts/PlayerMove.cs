@@ -17,6 +17,12 @@ public class PlayerMove : MonoBehaviour
     float gravity;
     public int airSpeed;
     public float coyoteTime;
+    public int stompSpeed;
+    bool stomping=false;
+    public float stompMass;
+    float massInit;
+    int terminalVelInit;
+    public float warpOffsetY;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,6 +58,17 @@ public class PlayerMove : MonoBehaviour
             rb2d.linearDamping=fallSpeed;
             rb2d.linearVelocityY=Mathf.Clamp(rb2d.linearVelocityY,-terminalVel,terminalVel);
         }
+        if (stomping)
+        {
+            if(!onGround)
+            {
+                Stomp();
+            }
+            else
+            {
+                StopStomp();
+            }
+        }
         //Debug.Log(onGround);
     }
     void FixedUpdate() 
@@ -72,16 +89,35 @@ public class PlayerMove : MonoBehaviour
         onGround=false;
     }
     //Mask abilities
-    public void Dash()
+    public void StartDash()
     {
         print("Dash");
     }
-    public void Stomp()
+    public void StartStomp()
     {
         print("Stomp");
+        stomping=true;
+        massInit=rb2d.mass;
+        terminalVelInit=terminalVel;
     }
-    public void Warp()
+    void Stomp()
+    {
+        //rb2d.mass=stompMass;
+        rb2d.AddForceY(-stompSpeed);
+        terminalVel=stompSpeed*2;
+    }
+    void StopStomp()
+    {
+        //rb2d.mass=massInit;
+        terminalVel=terminalVelInit;
+        stomping=false;
+    }
+    public void StartWarp()
     {
         print("Warp");
+    }
+    public void Warp(Transform warpBall)
+    {
+        transform.position=warpBall.position+new Vector3(0,warpOffsetY,0);
     }
 }

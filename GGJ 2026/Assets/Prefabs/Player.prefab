@@ -214,11 +214,12 @@ MonoBehaviour:
   rb2d: {fileID: 915668254354163286}
   speed: 550
   topHorizontalSpeed: 750
-  jumpForce: 5000
+  jumpForce: 5200
   terminalVel: 7000
-  fallSpeed: 5
-  airSpeed: 300
+  fallSpeed: 7
+  airSpeed: 230
   coyoteTime: 0.1
+  stompSpeed: 12000
 --- !u!114 &4702176439007049945
 MonoBehaviour:
   m_ObjectHideFlags: 0

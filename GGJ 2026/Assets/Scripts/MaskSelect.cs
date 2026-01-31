@@ -22,13 +22,12 @@ public class MaskSelect : MonoBehaviour
         if (switchMaskTo == 1)
         {
             playerStateMachine.playerState=PlayerStateMachine.PlayerState.DashMask;
-        }
-        
-        if (switchMaskTo == 2)
+        }  
+        else if (switchMaskTo == 2)
         {
             playerStateMachine.playerState=PlayerStateMachine.PlayerState.StompMask;
         }
-        if (switchMaskTo == 3)
+        else if (switchMaskTo == 3)
         {
             playerStateMachine.playerState=PlayerStateMachine.PlayerState.WarpMask;
         }

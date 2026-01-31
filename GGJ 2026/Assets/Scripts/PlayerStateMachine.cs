@@ -22,19 +22,19 @@ public class PlayerStateMachine : MonoBehaviour
             case PlayerState.DashMask:
                 if (Input.GetKeyDown(maskKey))
                 {
-                    player.Dash();
+                    player.StartDash();
                 }
                 break;
             case PlayerState.StompMask:
                 if (Input.GetKeyDown(maskKey))
                 {
-                    player.Stomp();
+                    player.StartStomp();
                 }
                 break;
             case PlayerState.WarpMask:
                 if (Input.GetKeyDown(maskKey))
                 {
-                    player.Warp();
+                    player.StartWarp();
                 }
                 break;
         }
