@@ -185,7 +185,7 @@ public class PlayerMove : MonoBehaviour
         if (!burning)
         {
             health--;
-            StartCoroutine("Burn");
+            StartCoroutine("Burn");  
             rb2d.linearVelocity+=lavaBounceSpeed;
         }
         burning=true;
@@ -210,3 +210,4 @@ public class PlayerMove : MonoBehaviour
         print(rb2d.linearVelocity);
     }
 }
+ 
