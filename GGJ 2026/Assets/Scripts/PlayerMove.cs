@@ -210,4 +210,3 @@ public class PlayerMove : MonoBehaviour
         print(rb2d.linearVelocity);
     }
 }
-  
