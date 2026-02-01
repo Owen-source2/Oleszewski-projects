@@ -30,9 +30,16 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]float dashSpeed;
     public bool canDash;
     public float dashCooldown;
+    PlayerStateMachine stateMachine;
+    public int health;
+    int maxHealth;
+    public Transform lastCheckpoint;
+    bool burning;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        maxHealth=health;
+        stateMachine=gameObject.GetComponent<PlayerStateMachine>();
         canDash=true;
         gravity=rb2d.gravityScale;
         groundFriction=rb2d.linearDamping;
@@ -78,6 +85,11 @@ public class PlayerMove : MonoBehaviour
                 StopStomp();
             }
         }
+        if (health <= 0)
+        {
+            Die();
+        }
+        //print(onGround);
         //Debug.Log(onGround);
     }
     void FixedUpdate() 
@@ -148,5 +160,33 @@ public class PlayerMove : MonoBehaviour
     {
         print("Warping to "+warpBall);
         transform.position=warpBall.position+new Vector3(0,warpOffsetY,0);
+    }
+    void OnCollisionEnter2D(Collision2D collision2D) {
+        if (collision2D.transform.gameObject.GetComponent<Lava>())
+        {
+            stateMachine.playerState=PlayerStateMachine.PlayerState.Burning;
+        }
+    }
+    public void LavaBounce()
+    {
+        //print("Burning");
+        if (!burning)
+        {
+            health--;
+            StartCoroutine("Burn");
+        }
+        burning=true;
+    }
+    IEnumerator Burn()
+    {
+        yield return new WaitForSeconds(3);
+        burning=false;
+        onGround=false;
+        stateMachine.playerState=PlayerStateMachine.PlayerState.NoMask;
+    }
+    void Die()
+    {
+        transform.position=lastCheckpoint.position;
+        health=maxHealth;
     }
 }

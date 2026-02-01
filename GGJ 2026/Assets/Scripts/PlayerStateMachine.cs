@@ -9,7 +9,8 @@ public class PlayerStateMachine : MonoBehaviour
         NoMask,
         DashMask,
         StompMask,
-        WarpMask
+        WarpMask,
+        Burning
     }
     public PlayerState playerState = PlayerState.NoMask;
     // Update is called once per frame
@@ -36,6 +37,9 @@ public class PlayerStateMachine : MonoBehaviour
                 {
                     player.StartWarp();
                 }
+                break;
+            case PlayerState.Burning:
+                player.LavaBounce();
                 break;
         }
     }
