@@ -37,6 +37,9 @@ public class PlayerMove : MonoBehaviour
     bool burning;
     public int baseBounceSpeed;
     public Vector2 lavaBounceSpeed;
+
+    public Animator playerAnimator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,6 +59,9 @@ public class PlayerMove : MonoBehaviour
         if (lHit || rHit)
         {
             onGround=true;
+            
+            playerAnimator.SetBool("OnGround", onGround);
+
         }
         else
         {
@@ -64,6 +70,9 @@ public class PlayerMove : MonoBehaviour
         if (onGround && Input.GetKeyDown(KeyCode.Space))
         {
             rb2d.AddForce(new Vector2(0,jumpForce));
+
+            playerAnimator.SetTrigger("Jump");
+
         }
         else if (onGround)
         {
@@ -114,10 +123,13 @@ public class PlayerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(coyoteTime);
         onGround=false;
+        playerAnimator.SetBool("OnGround", onGround);
+
     }
     //Mask abilities
     public void StartDash()
     {
+
         print("Dash");
         if(canDash)
         {
@@ -135,6 +147,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void StartStomp()
     {
+
         print("Stomp");
         stomping=true;
         massInit=rb2d.mass;
@@ -154,6 +167,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void StartWarp()
     {
+
         print("Warp");
         GameObject warpBall=Instantiate(warpBallBase,warpBallSpawn.position,Quaternion.identity);
         warpBall.GetComponent<Rigidbody2D>().linearVelocity=(rb2d.linearVelocity*new Vector2(0.9f,0.7f))+new Vector2(facingDir*warpBallBaseSpeed,warpBallBaseSpeed/2);
@@ -175,12 +189,13 @@ public class PlayerMove : MonoBehaviour
     
         if (collider2D.transform.gameObject.GetComponent<BouncePad>())
             {
-                stateMachine.playerState=PlayerStateMachine.PlayerState.NoMask;
+                //stateMachine.playerState=PlayerStateMachine.PlayerState.NoMask;
                 Bounce();
             }
     }
     public void LavaBounce()
     {
+
         print("Burning");
         if (!burning)
         {
