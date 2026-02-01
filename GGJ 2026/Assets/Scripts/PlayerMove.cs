@@ -35,6 +35,8 @@ public class PlayerMove : MonoBehaviour
     int maxHealth;
     public Transform lastCheckpoint;
     bool burning;
+    public int baseBounceSpeed;
+    public Vector2 lavaBounceSpeed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -166,20 +168,31 @@ public class PlayerMove : MonoBehaviour
         {
             stateMachine.playerState=PlayerStateMachine.PlayerState.Burning;
         }
+        
+    }
+    void OnTriggerEnter2D(Collider2D collider2D) {
+        
+    
+        if (collider2D.transform.gameObject.GetComponent<BouncePad>())
+            {
+                stateMachine.playerState=PlayerStateMachine.PlayerState.NoMask;
+                Bounce();
+            }
     }
     public void LavaBounce()
     {
-        //print("Burning");
+        print("Burning");
         if (!burning)
         {
             health--;
             StartCoroutine("Burn");
+            rb2d.linearVelocity+=lavaBounceSpeed;
         }
         burning=true;
     }
     IEnumerator Burn()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         burning=false;
         onGround=false;
         stateMachine.playerState=PlayerStateMachine.PlayerState.NoMask;
@@ -188,5 +201,12 @@ public class PlayerMove : MonoBehaviour
     {
         transform.position=lastCheckpoint.position;
         health=maxHealth;
+        rb2d.linearVelocity=Vector2.zero;
+    }
+    void Bounce()
+    {
+        print(rb2d.linearVelocity);
+        rb2d.linearVelocity*=new Vector2(1,-1)+new Vector2(0,baseBounceSpeed*-1);
+        print(rb2d.linearVelocity);
     }
 }
