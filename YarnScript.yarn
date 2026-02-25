@@ -1,0 +1,36 @@
+title: Start
+---
+<<declare $heat = 3>>
+<<declare $firewood = 5>>
+
+You hear the rickety cabin creak around you, straining under the fierce blizzard. You quickly glance to the pitiful stack you call a woodpile. (Barely enough for tonight), you think, shivering slightly from the cold overwhelming the furnace.
+
+->Fuel the fire
+  <<jump Out_Of_Wood>>
+  <<set $firewood = 0>>
+===
+
+title: Out_Of_Wood
+---
+
+As you throw what remains of your stockpile into the flames, you contemplate what to do next. You don't exactly have the money to go buy more, that all went to rent. But without more wood, you'll surely freeze ere sunrise. 
+
+->Go outside, chop some yourself
+  <<set $heat -=1>>
+  <<jump Forest>>
+->Ask your neighbors for help
+  <<jump Help>>
+===
+title: Forest
+---
+
+You brave the piercing cold and step into the forest, searching for something to burn. You find a standing dead tree, perfect for burning, but it's heavy, and you're far from home. Turning it into usable firewood may well take you until nightfall.
+
+->Bring it home
+  <<set $heat-=1>>
+  
+===
+title: Help
+---
+
+===
