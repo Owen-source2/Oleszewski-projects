@@ -1,0 +1,102 @@
+title: Start
+---
+<<declare $heat = 3>>
+<<declare $firewood = 5>>
+<<declare $helped = false>>
+
+You hear the rickety cabin creak around you, straining under the fierce blizzard. You quickly glance to the pitiful stack you call a woodpile. (Barely enough for tonight), you think, shivering slightly from the cold overwhelming the furnace.
+
+->Fuel the fire
+  <<jump Out_Of_Wood>>
+  <<set $firewood = 0>>
+===
+
+title: Out_Of_Wood
+---
+
+As you throw what remains of your stockpile into the flames, you contemplate what to do next. You don't exactly have the money to go buy more, that all went to rent. But without more wood, you'll surely freeze ere sunrise. 
+
+->Go outside, chop some yourself
+  <<set $heat -=1>>
+  <<jump Forest>>
+->Ask your neighbors for help
+  <<jump Help>>
+===
+title: Forest
+---
+
+You brave the piercing cold and step into the forest, searching for something to burn. You find a standing dead tree, perfect for burning, but it's heavy, and you're far from home. Turning it into usable firewood may well take you until nightfall.
+
+->Bring it home
+  <<set $heat-=1>>
+  <<jump Woodcutting>>
+->Swallow your pride, ask your neighbor for help.
+  <<jump Help>>
+===
+title: Woodcutting
+---
+
+You push over the dead tree, and drag it to your chopping block. The storm still rages around you, sapping what little heat you have left. By the time you get home, you are shivering. You will have to make this quick. 
+->Cut off a little bit, burn it now
+  <<set $firewood=5>>
+  <<jump Home>>
+
+->Chop up the whole thing
+  <<set $firewood=20>>
+  <<set $heat-=1>>
+  <<if $heat<1>>
+    <<jump Frozen>>
+  <<else>>
+    <<jump Home>>
+  <<endif>>
+===
+
+title: Home
+---
+
+Half frozen, you hobble into your cabin, arms laden with wood. <<if $helped>>You thank your lucky stars your neghbors were so helpful, they saved your life for sure.<<endif>>Luckily, the coals are still hot. You add your wood to the fire, and drift off to sleep, soothed by the crackling of the fire you fought so hard for.
+
+THE END
+===
+title: Frozen
+---
+
+You raise your axe, about to make your final swing. Just a little more, and you'll have plenty of wood. You try to bring it down...
+
+Nothing. 
+
+You can't move. You were so busy chopping, you didn't notice the cold creeping into your muscles and bones until it was too late. Here, you will remain. A grim monument to the power of the blizzard.
+
+Forever.
+
+THE END
+===
+title: Help
+---
+
+You decide to brave the storm, desperately hoping your neighbors can spare some wood. Straining against the raging winds, snow too thick to see more than an inch in front of you, you trudge through the snow. You cannot even tell if you're going the right way.
+
+Finally, you hear a call. It's your neighbor, asking what the hell you're doing outside in this weather.
+
+"For Christ's sake, come in!" he yells. You gladly oblige, going inside. The sudden warmth nearly makes you cry in relief. Your cabin never gets this warm in winter. 
+
+"Sit down. Let me make you some hot cocoa," he offers, and you see no reason to refuse.
+
+"So, tell me. What were you doing outside?" he calls from the kitchen.
+
+->I ran out of firewood. Didn't really have a choice.
+  <<jump Chewed_Out>>
+===
+title: Chewed_Out
+---
+
+Hearing your answer, he raises his voice in a mixture of anger and disbelief. "That's it? Why didn't you say so BEFORE the storm?! We've got plenty, take as much as you need!"
+
+Touched, you begin to tear up. "Thank you... Thank you so much! I'll just... take what I need, then I'll be out of your hair!"
+
+He holds out his hand. "No. Stay a while. I'd have to be crazy to send anyone out in THAT."
+
+->Don't have to tell me twice.
+  <<set $helped=true>>
+  <<jump Home>>
+===
