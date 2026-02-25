@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     public bool onGround, hurt=false;
     public LayerMask groundLayer;
-    public GameObject groundCheckL, groundCheckR, spawnpoint;
+    public GameObject groundCheckL, groundCheckR, spawnpoint, tornado, tornadoSpawnPoint;
     private InputAction moveAction, jumpAction;
     public float moveSpeed=5,jumpPower=10,iFrames=3;
     private bool jump=false;
@@ -19,6 +19,9 @@ public class PlayerMove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        tornado=GameObject.Find("Tornado");
+        tornadoSpawnPoint=GameObject.Find("TornadoSpawn");
+        nextScene=SceneManager.GetActiveScene().buildIndex+1;
         moveAction=InputSystem.actions.FindAction("Move");
         jumpAction=InputSystem.actions.FindAction("Jump");
         sprite=GetComponent<SpriteRenderer>();
@@ -50,11 +53,11 @@ public class PlayerMove : MonoBehaviour
         moveVector=moveAction.ReadValue<Vector2>();
         if (rb2d.linearVelocityX > 0)
         {
-            sprite.flipX=true;
+            sprite.flipX=false;
         }
         else if(moveVector.x<0)
         {
-            sprite.flipX=false;
+            sprite.flipX=true;
         }
         anim.SetFloat("XSpeed", Mathf.Abs(rb2d.linearVelocityX));
     }
@@ -75,12 +78,14 @@ public class PlayerMove : MonoBehaviour
         else if (collider2D.gameObject.GetComponent<EndGame>())
         {
             try{
-                nextScene++;
+                //nextScene++;
+                print(nextScene);
                 SceneManager.LoadScene(nextScene);
             }
             catch
             {
                 nextScene=0;
+                print(nextScene);
                 SceneManager.LoadScene(nextScene);
             }
         }
@@ -114,6 +119,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Die()
     {
+        tornado.transform.position=tornadoSpawnPoint.transform.position;
         transform.position=spawnpoint.transform.position;
         health=5;
     }
