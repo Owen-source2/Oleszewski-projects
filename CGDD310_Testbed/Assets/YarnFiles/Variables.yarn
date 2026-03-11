@@ -1,0 +1,6 @@
+﻿title: Start
+---
+<<declare $heat = 3>>
+<<declare $firewood = 5>>
+<<declare $helped = false>>
+===

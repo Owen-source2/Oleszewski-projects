@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6870250934739600053}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   groundCheckL: {fileID: 7184174601029249716}
   groundCheckR: {fileID: 7867688872596729689}
   spawnpoint: {fileID: 0}
-  tornado: {fileID: 0}
+  tornado: {fileID: 8663680185545949196, guid: dbc60413edf931554a405c66b869c9fa, type: 3}
   tornadoSpawnPoint: {fileID: 0}
   moveSpeed: 15
   jumpPower: 20
@@ -358,7 +358,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.74
       minScalar: 5
       maxCurve:
         serializedVersion: 2

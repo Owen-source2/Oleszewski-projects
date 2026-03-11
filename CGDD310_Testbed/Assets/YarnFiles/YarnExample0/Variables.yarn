@@ -1,0 +1,6 @@
+﻿title: Start
+---
+<<set $hasDiamond to false>>
+<<set $playerName="Joe">>
+<<set $tornadoComing=false>>
+===

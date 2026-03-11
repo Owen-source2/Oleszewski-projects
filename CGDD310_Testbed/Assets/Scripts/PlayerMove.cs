@@ -7,23 +7,34 @@ public class PlayerMove : MonoBehaviour
     public bool onGround, hurt=false;
     public LayerMask groundLayer;
     public GameObject groundCheckL, groundCheckR, spawnpoint, tornado, tornadoSpawnPoint;
-    private InputAction moveAction, jumpAction;
+    private InputAction moveAction, jumpAction, interactAction;
     public float moveSpeed=5,jumpPower=10,iFrames=3;
-    private bool jump=false;
+    private bool jump=false,canMove=true;
     public Rigidbody2D rb2d;
     private static int nextScene;
     private Vector2 moveVector;
     public int health=5;
     SpriteRenderer sprite;
     Animator anim;
+    private void OnEnable()
+    {
+        DialogManager.DialogStart += OnDialogStart;
+        DialogManager.DialogOver += OnDialogOver;
+    }
+    private void OnDisable()
+    {
+        DialogManager.DialogStart -= OnDialogStart;
+        DialogManager.DialogOver -= OnDialogOver;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        tornado=GameObject.Find("Tornado");
+        //tornado=GameObject.Find("Tornado");
         tornadoSpawnPoint=GameObject.Find("TornadoSpawn");
         nextScene=SceneManager.GetActiveScene().buildIndex+1;
         moveAction=InputSystem.actions.FindAction("Move");
         jumpAction=InputSystem.actions.FindAction("Jump");
+        interactAction = InputSystem.actions.FindAction("Interact");
         sprite=GetComponent<SpriteRenderer>();
         anim=GetComponent<Animator>();
     }
@@ -50,7 +61,10 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetBool("OnGround",false);
         }
-        moveVector=moveAction.ReadValue<Vector2>();
+        if(canMove)
+        {
+            moveVector=moveAction.ReadValue<Vector2>();
+        }
         if (rb2d.linearVelocityX > 0)
         {
             sprite.flipX=false;
@@ -68,6 +82,11 @@ public class PlayerMove : MonoBehaviour
             anim.SetTrigger("Jump");
             rb2d.AddForceY(jumpPower,ForceMode2D.Impulse);
             jump=false;
+        } 
+        if (interactAction.IsPressed())
+        {
+            print("Dialog Starting");
+            DialogManager.instance.StartDialog();
         }
     }
     void OnTriggerEnter2D(Collider2D collider2D) {
@@ -92,6 +111,10 @@ public class PlayerMove : MonoBehaviour
         else if (collider2D.gameObject.GetComponent<Spawnpoint>())
         {
             spawnpoint=collider2D.gameObject;
+        }
+        else if (collider2D.gameObject.GetComponent<TornadoSiren>())
+        {
+            DialogManager.instance.StartTornado();
         }
     }
     void OnCollisionEnter2D(Collision2D collision2D) {
@@ -122,5 +145,14 @@ public class PlayerMove : MonoBehaviour
         tornado.transform.position=tornadoSpawnPoint.transform.position;
         transform.position=spawnpoint.transform.position;
         health=5;
+    }
+    private void OnDialogStart()
+    {
+        rb2d.linearVelocity = Vector2.zero;
+        canMove = false;
+    }
+    private void OnDialogOver()
+    {
+        canMove = true;
     }
 }

@@ -1,0 +1,9 @@
+﻿title: NPC_Frog
+---
+<<if $tornadoComing==false>>
+    Hopper: Hi! My name is Hopper!
+    Hopper: You should be careful, there's a tornado warning! Don't want to get caught in it!
+<<else>>
+    Hopper: Run! There's a tornado coming!
+<<endif>>
+===
